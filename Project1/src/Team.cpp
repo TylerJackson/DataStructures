@@ -8,13 +8,13 @@ Team::Team(string name)
 {
     teamName=name;
     numPlayers=0;
-    playerList= new Player [0];
+    playerList= new Player [5];
     teamScore=0;
 }
 Team::Team(){
     teamName="";
     numPlayers=0;
-    playerList= new Player [0];
+    playerList= new Player [5];
     teamScore=0;
 }
 void Team::addPlayer(Player temp){
@@ -60,7 +60,7 @@ int Team::getNumPlayers(){
     return numPlayers;
 }
 Player& Team::getHighScorer(){
-    Player temp=playerList[0];
+    Player temp=playerList[5];
     for(int i=1;i<numPlayers;i++){
         if(playerList[i].getPlayerScore()>temp.getPlayerScore()){
             temp=playerList[i];
