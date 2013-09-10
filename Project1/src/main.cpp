@@ -20,6 +20,7 @@ int main(int argc, const char * argv[])
         cout<<"get it"<<endl;
         game.printVLow(argv[4]);
     }else if(strcmp(argv[5],"vmed")==0){
+        return 0;
         game.printVMed(argv[4]);
     }else if(strcmp(argv[5],"vhigh")==0){
         game.printVHigh(argv[4]);

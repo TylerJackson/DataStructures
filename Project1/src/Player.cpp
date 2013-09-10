@@ -7,14 +7,14 @@
 Player::Player(string name,int idplayer){
     playerName=name;
     playerId=idplayer;
-    tagList= new Tag [0];
+    tagList= new Tag [5];
     numTags=0;
     playerScore=0;
 }
 Player::Player(){
     playerName="";
     playerId=0;
-    tagList= new Tag [0];
+    tagList= new Tag [5];
     numTags=0;
     playerScore=0;
 }
