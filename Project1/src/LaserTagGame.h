@@ -10,8 +10,8 @@
 #ifndef __TJackson__LaserTagGame__
 #define __TJackson__LaserTagGame__
 #include <iostream>
+#include <fstream>
 #include "Team.h"
-using namespace std;
 class LaserTagGame{
  public:
     LaserTagGame(string teamAF,string teamBF, string teamMatchF);

@@ -26,7 +26,7 @@ private:
     string playerName;
     int playerId;
     Tag * tagList;
-    int numTags=0;
+    int numTags;
     int playerScore;
 };
 #endif /* defined(__TJackson__Player__) */

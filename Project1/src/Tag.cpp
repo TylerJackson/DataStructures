@@ -5,6 +5,8 @@
 //  -who shot it, who got shot, when it happened, and how much it was worth
 #include "Tag.h"
 #include <string>
+#include <cstring>
+
 Tag::Tag(int id1,int id2, int time, int spot){
     taggerid=id1;
     taggedid=id2;

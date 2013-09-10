@@ -39,7 +39,7 @@ Player& Team::getPlayer(int playId){
             }
         }
     }
-    return NULL;
+    return playerList[0];
 }
 bool Team::playerOnTeam(int playId){
     for(int i=0;i<numPlayers;i++){
@@ -76,8 +76,8 @@ void Team::sortPlayers(){
         for(int j=0;j<i;j++)
             if(playerList[i].getNumTags()>playerList[j].getNumTags()){
                 Player tempPlayer=Player(playerList[j].getPlayerName(),playerList[j].getPlayerId());
-                for(int i=0;i<playerList[j].getNumTags();i++){
-                    tempPlayer.addTag(playerList[j].getTag(i));
+                for(int k=0;k<playerList[j].getNumTags();k++){
+                    tempPlayer.addTag(playerList[j].getTag(k));
                 }
                 playerList[j]=playerList[i];
                 playerList[i]=tempPlayer;
@@ -87,4 +87,3 @@ void Team::sortPlayers(){
 Player & Team::getPlayerByIndex(int playIndex){
     return playerList[playIndex];
 }
-

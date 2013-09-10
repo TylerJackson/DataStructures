@@ -6,6 +6,8 @@
 #include <fstream>
 #include <string>
 #include "LaserTagGame.h"
+#include <cstring>
+#include <cstdlib>
 using namespace std;
 int main(int argc, const char * argv[])
 {
@@ -24,4 +26,3 @@ int main(int argc, const char * argv[])
     }
     return 0;
 }
-

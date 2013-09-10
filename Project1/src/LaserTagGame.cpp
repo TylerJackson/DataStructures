@@ -10,6 +10,10 @@
 #include "LaserTagGame.h"
 #include <fstream>
 #include <string>
+#include <cstring>
+#include <iostream>
+#include <cstdlib>
+using namespace std;
 LaserTagGame::LaserTagGame(string teamAF,string teamBF, string teamMatchF){
     Team tempTeamA=processInputTeamFile(teamAF);
     Team tempTeamB=processInputTeamFile(teamBF);
@@ -24,7 +28,7 @@ LaserTagGame::LaserTagGame(string teamAF,string teamBF, string teamMatchF){
 }
 void LaserTagGame::printVLow(string outputFileName){
     ofstream fileout;
-    fileout.open(outputFileName);
+    fileout.open(outputFileName.c_str());
     fileout<<teamA.getTeamName()<<": "<<teamA.getTeamScore()<<" points"<<endl;
     fileout<<teamB.getTeamName()<<": "<<teamB.getTeamScore()<<" points"<<endl;
     if(teamA.getTeamScore()>teamB.getTeamScore()){
@@ -37,44 +41,44 @@ void LaserTagGame::printVLow(string outputFileName){
     fileout.close();
 }
 void LaserTagGame::printVMed(string outputFileName){
-    ofstream fileout;
-    fileout.open(outputFileName);
-    fileout<<teamA.getTeamName()<<endl;
+    ofstream fileout1;
+    fileout1.open(outputFileName.c_str());
+    fileout1<<teamA.getTeamName()<<endl;
     int numPlayTeamA=teamA.getNumPlayers();
     for(int i=0;i<numPlayTeamA;i++){
-        fileout<<"     "<<teamA.getPlayerByIndex(i).getPlayerName();
-        fileout<<" had a total of "<<teamA.getPlayerByIndex(i).getNumTags()<<" tags"<<endl;
+        fileout1<<"     "<<teamA.getPlayerByIndex(i).getPlayerName();
+        fileout1<<" had a total of "<<teamA.getPlayerByIndex(i).getNumTags()<<" tags"<<endl;
     }
-    fileout<<teamB.getTeamName()<<endl;
+    fileout1<<teamB.getTeamName()<<endl;
     int numPlayTeamB=teamB.getNumPlayers();
     for(int i=0;i<numPlayTeamB;i++){
-        fileout<<"     "<<teamB.getPlayerByIndex(i).getPlayerName();
-        fileout<<" had a total of "<<teamB.getPlayerByIndex(i).getNumTags()<<" tags"<<endl;
+        fileout1<<"     "<<teamB.getPlayerByIndex(i).getPlayerName();
+        fileout1<<" had a total of "<<teamB.getPlayerByIndex(i).getNumTags()<<" tags"<<endl;
     }
-    fileout<<endl;
-    fileout<<"Best score from "<<teamA.getTeamName()<<": ";
-    fileout<<teamA.getHighScorer().getPlayerName()<<"(";
-    fileout<<teamA.getHighScorer().getPlayerScore()<<" points)"<<endl;
+    fileout1<<endl;
+    fileout1<<"Best score from "<<teamA.getTeamName()<<": ";
+    fileout1<<teamA.getHighScorer().getPlayerName()<<"(";
+    fileout1<<teamA.getHighScorer().getPlayerScore()<<" points)"<<endl;
     
-    fileout<<"Best score from "<<teamB.getTeamName()<<": ";
-    fileout<<teamB.getHighScorer().getPlayerName()<<"(";
-    fileout<<teamB.getHighScorer().getPlayerScore()<<" points)"<<endl;
+    fileout1<<"Best score from "<<teamB.getTeamName()<<": ";
+    fileout1<<teamB.getHighScorer().getPlayerName()<<"(";
+    fileout1<<teamB.getHighScorer().getPlayerScore()<<" points)"<<endl;
     
-    fileout<<teamA.getTeamName()<<": "<<teamA.getTeamScore()<<" points"<<endl;
-    fileout<<teamB.getTeamName()<<": "<<teamB.getTeamScore()<<" points"<<endl;
+    fileout1<<teamA.getTeamName()<<": "<<teamA.getTeamScore()<<" points"<<endl;
+    fileout1<<teamB.getTeamName()<<": "<<teamB.getTeamScore()<<" points"<<endl;
     if(teamA.getTeamScore()>teamB.getTeamScore()){
-        fileout<<"Overall Winners:  "<<teamA.getTeamName()<<endl;
+        fileout1<<"Overall Winners:  "<<teamA.getTeamName()<<endl;
     }else if(teamB.getTeamScore()>teamA.getTeamScore()){
-        fileout<<"Overall Winners:  "<<teamB.getTeamName()<<endl;
+        fileout1<<"Overall Winners:  "<<teamB.getTeamName()<<endl;
     }else{
-        fileout<<"The Two Teams Tied"<<endl;
+        fileout1<<"The Two Teams Tied"<<endl;
     }
-    fileout.close();
+    fileout1.close();
 }
 void LaserTagGame::printVHigh(string outputFileName){
-    ofstream fileout;
-    fileout.open(outputFileName);
-    fileout<<teamA.getTeamName()<<endl;
+    ofstream fileout2;
+    fileout2.open(outputFileName.c_str());
+    fileout2<<teamA.getTeamName()<<endl;
     int numPlayTeamA=teamA.getNumPlayers();
     int numPlayTeamB=teamB.getNumPlayers();
     for(int i=0;i<numPlayTeamA;i++){
@@ -87,18 +91,18 @@ void LaserTagGame::printVHigh(string outputFileName){
                 if(tempTagger.getTag(k).getTaggedId()== tempTarget.getPlayerId())
                     count++;
             }
-            fileout<<"     ";
-            fileout<<tempTagger.getPlayerName()<<" tagged "<<tempTarget.getPlayerName();
-            fileout<<" "<<count<<" times"<<endl;
+            fileout2<<"     ";
+            fileout2<<tempTagger.getPlayerName()<<" tagged "<<tempTarget.getPlayerName();
+            fileout2<<" "<<count<<" times"<<endl;
         }
-        fileout<<"     ";
-        fileout<<tempTagger.getPlayerName()<<" had a total of "<<tempTagger.getNumTags();
-        fileout<<" tags"<<endl;
+        fileout2<<"     ";
+        fileout2<<tempTagger.getPlayerName()<<" had a total of "<<tempTagger.getNumTags();
+        fileout2<<" tags"<<endl;
     }
-    fileout<<teamA.getTeamName()<<": "<<teamA.getTeamScore()<<" points"<<endl;
-
-    fileout<<endl;
-    fileout<<teamB.getTeamName()<<endl;
+    fileout2<<teamA.getTeamName()<<": "<<teamA.getTeamScore()<<" points"<<endl;
+    
+    fileout2<<endl;
+    fileout2<<teamB.getTeamName()<<endl;
     for(int i=0;i<numPlayTeamB;i++){
         Player tempTagger=teamB.getPlayerByIndex(i);
         int numTagsForTagger=tempTagger.getNumTags();
@@ -109,30 +113,30 @@ void LaserTagGame::printVHigh(string outputFileName){
                 if(tempTagger.getTag(k).getTaggedId()== tempTarget.getPlayerId())
                     count++;
             }
-            fileout<<"     ";
-            fileout<<tempTagger.getPlayerName()<<" tagged "<<tempTarget.getPlayerName();
-            fileout<<" "<<count<<" times"<<endl;
+            fileout2<<"     ";
+            fileout2<<tempTagger.getPlayerName()<<" tagged "<<tempTarget.getPlayerName();
+            fileout2<<" "<<count<<" times"<<endl;
         }
-        fileout<<"     ";
-        fileout<<tempTagger.getPlayerName()<<" had a total of "<<tempTagger.getNumTags();
-        fileout<<" tags"<<endl;
+        fileout2<<"     ";
+        fileout2<<tempTagger.getPlayerName()<<" had a total of "<<tempTagger.getNumTags();
+        fileout2<<" tags"<<endl;
     }
-    fileout<<teamB.getTeamName()<<": "<<teamB.getTeamScore()<<" points"<<endl;
-    fileout<<endl;
+    fileout2<<teamB.getTeamName()<<": "<<teamB.getTeamScore()<<" points"<<endl;
+    fileout2<<endl;
     if(teamA.getTeamScore()>teamB.getTeamScore()){
-        fileout<<"Winners:  "<<teamA.getTeamName()<<endl;
+        fileout2<<"Winners:  "<<teamA.getTeamName()<<endl;
     }else if(teamB.getTeamScore()>teamA.getTeamScore()){
-        fileout<<"Winners:  "<<teamB.getTeamName()<<endl;
+        fileout2<<"Winners:  "<<teamB.getTeamName()<<endl;
     }else{
-        fileout<<"The Two Teams Tied"<<endl;
+        fileout2<<"The Two Teams Tied"<<endl;
     }
-    fileout.close();
+    fileout2.close();
 }
 Team LaserTagGame::processInputTeamFile(string inputFileName){
     
     //create a char ** with the lines of the file
     ifstream filein;
-    filein.open(inputFileName);
+    filein.open(inputFileName.c_str());
     char ** team1=new char*[12];
     char buffer[80];
     for(int i=0;i<2;i++){
@@ -147,10 +151,10 @@ Team LaserTagGame::processInputTeamFile(string inputFileName){
         strcpy(team1[i],buffer);
     }
     filein.close();
-
+    
     //create team
     Team tempTeam=Team(team1[0]);
-
+    
     //create players for team
     for(int i=0;i<numplayersteam1;i++){
         int tempPlayerId=team1[2+i][0]-'0';
@@ -159,12 +163,12 @@ Team LaserTagGame::processInputTeamFile(string inputFileName){
         tempTeam.addPlayer(temp);
     }
     return tempTeam;
-
+    
 }
 void LaserTagGame::processInputMatchFile(string inputMatchName,Team & A,Team & B){
     //read in match file and store in char**
     ifstream filein;
-    filein.open(inputMatchName);
+    filein.open(inputMatchName.c_str());
     char buffer[80];
     filein.getline(buffer,80);
     int numberOfTags=(int)buffer[0]-'0';
@@ -174,7 +178,7 @@ void LaserTagGame::processInputMatchFile(string inputMatchName,Team & A,Team & B
         matchfile[i]=new char[strlen(buffer)+1];
         strcpy(matchfile[i],buffer);
     }
-
+    
     //assign tags to the players
     for(int i=0;i<numberOfTags;i++){
         int tempShooterId=(int)matchfile[i][0]-'0';
@@ -185,7 +189,7 @@ void LaserTagGame::processInputMatchFile(string inputMatchName,Team & A,Team & B
         }
         string tempstr=*(matchfile+i);
         tempstr=tempstr.substr(4,endOfTimeIndex);
-        int tempGameTime=stoi(tempstr);
+        int tempGameTime=atoi(tempstr.c_str());
         int tempTagSpot=matchfile[i][endOfTimeIndex+1]-'0';
         Tag tempTag=Tag(tempShooterId, tempTargetId, tempGameTime, tempTagSpot);
         if(A.playerOnTeam(tempShooterId)==true){
