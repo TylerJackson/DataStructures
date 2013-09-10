@@ -39,6 +39,7 @@ Player& Team::getPlayer(int playId){
             }
         }
     }
+    return NULL;
 }
 bool Team::playerOnTeam(int playId){
     for(int i=0;i<numPlayers;i++){

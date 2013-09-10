@@ -9,6 +9,7 @@
 //  -Also handles writing out the 3 different verbosity levels to the output file
 #include "LaserTagGame.h"
 #include <fstream>
+#include <string>
 LaserTagGame::LaserTagGame(string teamAF,string teamBF, string teamMatchF){
     Team tempTeamA=processInputTeamFile(teamAF);
     Team tempTeamB=processInputTeamFile(teamBF);
