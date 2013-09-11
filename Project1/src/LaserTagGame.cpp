@@ -29,8 +29,6 @@ LaserTagGame::LaserTagGame(string teamAF,string teamBF, string teamMatchF){
 }
 void LaserTagGame::printVLow(string outputFileName){
     ofstream fileout;
-    cout<<"we're in here"<<endl;
-
     fileout.open(outputFileName.c_str());
     fileout<<teamA.getTeamName()<<": "<<teamA.getTeamScore()<<" points"<<endl;
     fileout<<teamB.getTeamName()<<": "<<teamB.getTeamScore()<<" points"<<endl;
@@ -172,9 +170,7 @@ void LaserTagGame::processInputMatchFile(string inputMatchName,Team & A,Team & B
     //read in match file and store in char **
 
 	ifstream filein1;
-	cout<<inputMatchName<<endl;
     filein1.open(inputMatchName.c_str());
-    if(filein1.is_open()==false){cout<<"got her in girl"<<endl;}
     char *buffer=new char[80];
     filein1.getline(buffer,80);
     int numberOfTags=(int)buffer[0]-'0';
