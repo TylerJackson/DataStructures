@@ -60,7 +60,7 @@ int Team::getNumPlayers(){
     return numPlayers;
 }
 Player& Team::getHighScorer(){
-    Player temp=playerList[5];
+    Player temp=playerList[0];
     for(int i=1;i<numPlayers;i++){
         if(playerList[i].getPlayerScore()>temp.getPlayerScore()){
             temp=playerList[i];

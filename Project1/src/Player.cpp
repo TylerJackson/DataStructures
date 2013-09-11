@@ -23,7 +23,7 @@ void Player::addTag(Tag a){
     for(int i=0;i<numTags;i++){
         temp[i]=tagList[i];
     }
-    temp[numTags]=a;
+    temp[numTags]=Tag(a);
     numTags++;
     tagList=temp;
     updatePlayerScore();

@@ -12,7 +12,7 @@ Tag::Tag(int id1,int id2, int time, int spot){
     taggedid=id2;
     tagtime=time;
     tagspot=spot;
-    this->calcTagScore();
+    tagScore=calcTagScore();
 }
 Tag::Tag(){
     taggerid=0;
@@ -21,18 +21,18 @@ Tag::Tag(){
     tagspot=0;
     tagScore=0;
 }
-void Tag::calcTagScore(){
+int Tag::calcTagScore(){
     if(this->tagspot ==1){
-        tagScore=5;
+        return 5;
     }
     else if(this->tagspot == 2){
-        tagScore=8;
+        return 8;
     }
     else if(this->tagspot == 3){
-        tagScore=10;
+        return 10;
     }
     else{
-        tagScore=15;
+        return 15;
     }
 }
 int Tag::getTagScore(){
@@ -41,3 +41,13 @@ int Tag::getTagScore(){
 int Tag::getTaggedId(){
     return taggedid;
 }
+int Tag::getTaggerId(){
+    return taggerid;
+}
+int Tag::getTagSpot(){
+    return tagspot;
+}
+int Tag::getTagTime(){
+    return tagtime;
+}
+

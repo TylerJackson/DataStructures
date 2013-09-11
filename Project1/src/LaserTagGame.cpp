@@ -14,8 +14,9 @@
 #include <iostream>
 #include <cstdlib>
 using namespace std;
+
 LaserTagGame::LaserTagGame(string teamAF,string teamBF, string teamMatchF){
-    Team tempTeamA=processInputTeamFile(teamAF);
+	Team tempTeamA=processInputTeamFile(teamAF);
     Team tempTeamB=processInputTeamFile(teamBF);
     if(tempTeamA.getTeamName()<tempTeamB.getTeamName()){
         teamA=processInputTeamFile(teamAF);
@@ -28,6 +29,8 @@ LaserTagGame::LaserTagGame(string teamAF,string teamBF, string teamMatchF){
 }
 void LaserTagGame::printVLow(string outputFileName){
     ofstream fileout;
+    cout<<"we're in here"<<endl;
+
     fileout.open(outputFileName.c_str());
     fileout<<teamA.getTeamName()<<": "<<teamA.getTeamScore()<<" points"<<endl;
     fileout<<teamB.getTeamName()<<": "<<teamB.getTeamScore()<<" points"<<endl;
@@ -166,15 +169,18 @@ Team LaserTagGame::processInputTeamFile(string inputFileName){
     
 }
 void LaserTagGame::processInputMatchFile(string inputMatchName,Team & A,Team & B){
-    //read in match file and store in char**
-    ifstream filein;
-    filein.open(inputMatchName.c_str());
-    char buffer[80];
-    filein.getline(buffer,80);
+    //read in match file and store in char **
+
+	ifstream filein1;
+	cout<<inputMatchName<<endl;
+    filein1.open(inputMatchName.c_str());
+    if(filein1.is_open()==false){cout<<"got her in girl"<<endl;}
+    char *buffer=new char[80];
+    filein1.getline(buffer,80);
     int numberOfTags=(int)buffer[0]-'0';
     char ** matchfile=new char *[numberOfTags];
     for (int i=0;i<numberOfTags;i++){
-        filein.getline(buffer,80);
+        filein1.getline(buffer,80);
         matchfile[i]=new char[strlen(buffer)+1];
         strcpy(matchfile[i],buffer);
     }

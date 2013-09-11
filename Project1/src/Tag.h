@@ -11,9 +11,13 @@ class Tag
 public:
     Tag(int taggerid, int taggedid,int tagtime, int tagspot);
     Tag();
-    void calcTagScore();
+    int calcTagScore();
     int getTagScore();
     int getTaggedId();
+    int getTaggerId();
+    int getTagSpot();
+    int getTagTime();
+
 private:
     int taggerid;
     int taggedid;
