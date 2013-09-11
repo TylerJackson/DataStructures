@@ -70,6 +70,7 @@ Player& Team::getHighScorer(){
         if(temp.getPlayerId()==playerList[i].getPlayerId())
             return playerList[i];
     }
+    return playerList[0]; //this shouldn't ever happen, just so it would have to return something though
 }
 void Team::sortPlayers(){
     for(int i=1;i<numPlayers;i++){

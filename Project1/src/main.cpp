@@ -17,7 +17,6 @@ int main(int argc, const char * argv[])
                     fourth arg is the file you want the results to but output to*/
     LaserTagGame game=LaserTagGame(argv[1], argv[2], argv[3]);
     if(strcmp(argv[5],"vlow")==0){
-        cout<<"get it"<<endl;
         game.printVLow(argv[4]);
     }else if(strcmp(argv[5],"vmed")==0){
         game.printVMed(argv[4]);
