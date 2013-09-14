@@ -1,0 +1,7 @@
+[stop]
+a an the who I
+am is not
+[category]
+apple = iphone ipad macbook
+automobile = car truck toyota ford
+candy = snickers twix kitkat

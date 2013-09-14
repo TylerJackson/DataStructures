@@ -1,0 +1,12 @@
+[1]
+This is the text that appears on page one of the book Note that
+there is no
+[2]
+punctuation anywhere but that sentence-based capitalization is
+still present
+[3]
+You only need to worry about indexing individual words not phrases
+[4]
+This page was supposed to have french words but that would just 
+complicate things
+[-1]
