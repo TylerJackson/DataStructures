@@ -1,7 +1,7 @@
 [stop]
-a an the who I
-am is not
+this is I they are that
+can to a of if them in the
+and be
 [category]
-apple = iphone ipad macbook
-automobile = car truck toyota ford
-candy = snickers twix kitkat
+fires = burn fire temperature burns
+fire-trucks = water-hoses ladders tires

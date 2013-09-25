@@ -1,12 +1,17 @@
 [1]
-This is the text that appears on page one of the book Note that
-there is no
+I like fire-trucks because they are cool They
+have giant water-hoses and ladders and tires
+that can put out fires
 [2]
-punctuation anywhere but that sentence-based capitalization is
-still present
+When there aren't fire-trucks the fire burns
+down your house Fires get up to a temperature
+of 1000 degrees
 [3]
-You only need to worry about indexing individual words not phrases
+If your house burns down you lose all your
+things which can be sad
 [4]
-This page was supposed to have french words but that would just 
-complicate things
+However usually people have insurance
+that protects
+them from losing
+any money in theory
 [-1]

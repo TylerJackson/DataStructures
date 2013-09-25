@@ -1,0 +1,59 @@
+[1]
+1000: 2
+[A]
+all: 3
+any: 4
+aren't: 2
+[B]
+because: 1
+For burns, see fires.
+[C]
+cool: 1
+[D]
+degrees: 2
+down: 2, 3
+[F]
+For fire, see fires.
+fire-trucks: 1, 2
+fires: 1, 2, 3
+from: 4
+[G]
+get: 2
+giant: 1
+[H]
+have: 1, 4
+house: 2, 3
+however: 4
+[I]
+insurance: 4
+[L]
+For ladders, see fire-trucks.
+like: 1
+lose: 3
+losing: 4
+[M]
+money: 4
+[O]
+out: 1
+[P]
+people: 4
+protects: 4
+put: 1
+[S]
+sad: 3
+[T]
+For temperature, see fires.
+theory: 4
+there: 2
+things: 3
+For tires, see fire-trucks.
+[U]
+up: 2
+usually: 4
+[W]
+For water-hoses, see fire-trucks.
+when: 2
+which: 3
+[Y]
+you: 3
+your: 2, 3
