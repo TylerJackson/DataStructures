@@ -1,15 +1,12 @@
 //============================================================================
-// Name        : 5.cpp
-// Author      : TJ
-// Version     :
-// Copyright   : Your copyright notice
-// Description : Hello World in C++, Ansi-style
+// Name        : Program 1 Redo Laser Tag
+// Author      : Tyler Jackson
+// Description : This is the redo version of my laser tag game
 //============================================================================
 
 #include <iostream>
 #include "LaserTagGame.h"
-using namespace std;
-
+//----REFER TO BOTTOM FOR ACTUAL PROGRAM
 int main(int argc, const char * argv[]) {
 	//test tag class
 	//are constructors created correctly, and do the getters work correctly
@@ -114,8 +111,11 @@ int main(int argc, const char * argv[]) {
 	cout<<pluck.getNumPlayers()<<" players on the team."<<endl;
 	cout<<"    Our Score is "<<pluck.getTeamScore()<<"."<<endl;
 	cout<<"(Should say that the first team name is The Freakers and the second team is The Pluckers.)"<<endl;
-	cout<<"(Freakers have 3 players and score is 58.  Pluckers have 4 players and score is 80.)"<<endl;
-    /*make sure the first arg is the team A text file
+	cout<<"(Freakers have 3 players and score is 58.  Pluckers have 3 players and score is 65.)"<<endl;
+
+	//ACTUAL PROGRAM
+
+	/*make sure the first arg is the team A text file
                     second arg is the team B text file
                     third arg is the match file
                     fourth arg is the file you want the results to but output to

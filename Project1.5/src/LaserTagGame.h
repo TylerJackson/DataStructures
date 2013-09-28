@@ -1,6 +1,10 @@
 /*
  * LaserTagGame.h
- *
+ *	My Laser Tag Game class has two teams, one for each in the game.
+ *	It also has three strings that represent the two team files getting passed in
+ *	---as well as the match file that holds the tag data.
+ *	This class also handles all the file data and printing the 3 different verbosity
+ *	---levels to an output file.
  *  Created on: Sep 26, 2013
  *      Author: tgjackson
  */
@@ -11,7 +15,6 @@
 #include <fstream>
 #include <cstring>
 #include <cstdlib>
-namespace std {
 
 class LaserTagGame {
 public:
@@ -32,5 +35,4 @@ private:
     Team teamB;
 };
 
-} /* namespace std */
 #endif /* LASERTAGGAME_H_ */

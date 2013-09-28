@@ -9,8 +9,7 @@
 #define PLAYER_H_
 #include "Tag.h"
 #include <string>
-namespace std {
-
+using namespace std;
 class Player {
 public:
     Player ();
@@ -33,5 +32,4 @@ private:
     Tag* tagList;
 };
 
-} /* namespace std */
 #endif /* PLAYER_H_ */

@@ -6,7 +6,6 @@
 
 #include "Player.h"
 #include <iostream>
-namespace std {
 
 Player::Player() {
     playerName="";
@@ -16,6 +15,7 @@ Player::Player() {
     tagList=0;
 }
 
+//player constructor takes the name of the player and the player's id number as args
 Player::Player(string name, int idnum) {
 	playerName=name;
 	playerId=idnum;
@@ -35,9 +35,11 @@ Player::Player(const Player& orig){
 
 }
 Player& Player::operator=(const Player& rhs){
-	if(tagList!=0){
-		delete []tagList;
-	}
+	//if(this != rhs){
+		if(tagList!=0){
+			delete []tagList;
+		}
+	//}
 	this->playerName=rhs.playerName;
 	this->playerId=rhs.playerId;
 	this->numTags=rhs.numTags;
@@ -50,7 +52,7 @@ Player& Player::operator=(const Player& rhs){
 }
 //remember if you add a tag to a player already on a team, that you need to update the
 //team score--this is only updated when a new player is added, not when a new tag is added
-void Player::addTag(Tag a) {
+void Player::addTag(Tag a){
     Tag* temp=new Tag [numTags+1];
     for(int i=0;i<numTags;i++){
         temp[i]=tagList[i];
@@ -62,6 +64,8 @@ void Player::addTag(Tag a) {
     updatePlayerScore();
 }
 
+//this updates the player score which is useful because I add tags occasionally and
+//we always want this to be up to date
 void Player::updatePlayerScore() {
     playerScore=0;
     for(int i=0;i<numTags;i++){
@@ -85,12 +89,13 @@ string Player::getPlayerName() {
 	return playerName;
 }
 
+//returns a tag based on where it is in the array so that I can figure out
+//who this player tagged
 Tag& Player::getTag(int index) {
 	return tagList[index];
 }
-
+//destructor removes dynamic data
 Player::~Player() {
 	delete []tagList;
 }
 
-} /* namespace std */

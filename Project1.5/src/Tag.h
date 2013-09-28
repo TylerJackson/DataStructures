@@ -8,7 +8,6 @@
 #ifndef TAG_H_
 #define TAG_H_
 
-namespace std {
 
 class Tag {
 public:
@@ -27,5 +26,4 @@ private:
 	int tagTime;
 };
 
-} /* namespace std */
 #endif /* TAG_H_ */

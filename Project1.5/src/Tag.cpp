@@ -7,8 +7,6 @@
 
 #include "Tag.h"
 
-namespace std {
-
 Tag::Tag(){
 	targetId=0;
 	tagSpot=0;
@@ -16,6 +14,8 @@ Tag::Tag(){
 	tagTime=0;
 }
 
+//calculates tag with who got tagged and the spot he got tagged as arguments-I included
+//the tag time just because I could.. we don't use it
 Tag::Tag(int tempTargetId, int tempTagSpot, int tempTagTime) {
 	targetId=tempTargetId;
 	tagSpot=tempTagSpot;
@@ -37,6 +37,7 @@ Tag& Tag::operator= (const Tag& rhs) {
 	return *this;
 }
 
+//this calculates the score of the tag based on where it was
 int Tag::calcScore(int tempSpot) {
 	if(tempSpot==1){
 		return 5;
@@ -60,5 +61,3 @@ int Tag::getTagScore() {
 Tag::~Tag() {
 	// TODO Auto-generated destructor stub
 }
-
-} /* namespace std */

@@ -9,7 +9,6 @@
 #include <iostream>
 #include <fstream>
 #include <cstring>
-namespace std {
 
 LaserTagGame::LaserTagGame() {
     team1File="";
@@ -17,6 +16,7 @@ LaserTagGame::LaserTagGame() {
     teamMatchFile="";
 }
 
+//constructor takes each team file as args as well as the file containing the tag data
 LaserTagGame::LaserTagGame(string teamAF, string teamBF, string teamMatchF) {
 	Team tempTeamA=processInputTeamFile(teamAF);
     Team tempTeamB=processInputTeamFile(teamBF);
@@ -28,9 +28,9 @@ LaserTagGame::LaserTagGame(string teamAF, string teamBF, string teamMatchF) {
     	teamB=tempTeamB;
     }
     processInputMatchFile(teamMatchF);
-    printNames();
 }
 
+//this prints the output at low verbosity to the file passed in as arg 'output'
 void LaserTagGame::printVLow(string output) {
     ofstream fileout;
     fileout.open(output.c_str());
@@ -46,6 +46,7 @@ void LaserTagGame::printVLow(string output) {
     fileout.close();
 }
 
+//this prints the output at medium verbosity to the file passed in as arg 'output'
 void LaserTagGame::printVMed(string output) {
     ofstream fileout1;
     fileout1.open(output.c_str());
@@ -82,6 +83,7 @@ void LaserTagGame::printVMed(string output) {
     fileout1.close();
 }
 
+//this prints the output at high verbosity to the file passed in as arg 'output'
 void LaserTagGame::printVHigh(string output) {
     ofstream fileout2;
     fileout2.open(output.c_str());
@@ -105,7 +107,8 @@ void LaserTagGame::printVHigh(string output) {
             Player tempTarget=teamB.getPlayer(j);
             int count=0;
             for(int k=0;k<numTagsForTagger;k++){
-                if(tempTagger.getTag(k).getTargetId()== tempTarget.getPlayerId())
+            	Tag tempTag=tempTagger.getTag(k);
+                if(tempTag.getTargetId()== tempTarget.getPlayerId())
                     count++;
             }
             fileout2<<"     ";
@@ -127,7 +130,8 @@ void LaserTagGame::printVHigh(string output) {
             Player tempTarget=teamA.getPlayer(j);
             int count=0;
             for(int k=0;k<numTagsForTagger;k++){
-                if(tempTagger.getTag(k).getTargetId() == tempTarget.getPlayerId())
+            	Tag tempTag1=tempTagger.getTag(k);
+                if(tempTag1.getTargetId() == tempTarget.getPlayerId())
                     count++;
             }
             fileout2<<"     ";
@@ -150,6 +154,8 @@ void LaserTagGame::printVHigh(string output) {
     fileout2.close();
 }
 
+//this was a function I made to help when I was testing the various file processing.  Prints to console
+//as opposed to a file every time
 void LaserTagGame::printNames(){
 	cout<<"There are two teams in our game"<<endl;
 	cout<<endl;
@@ -169,72 +175,17 @@ void LaserTagGame::printNames(){
 
 }
 
+//this processes the tag data and adds each tag to a player--therefore
+//this has to be called after the two team files are processed or else it will have no
+//players to add the tags to.
 void LaserTagGame::processInputMatchFile(string inputMatchName) {
     //read in match file and store in char **
 
 	ifstream filein1;
     filein1.open(inputMatchName.c_str());
     char *buffer=new char[80];
-    filein1.getline(buffer,80);
-    int numberOfTags=(int)buffer[0]-'0';
-    cout<<"::::num tags should be 6, it is: "<<numberOfTags<<endl;
-    /*
-    char ** matchfile=new char *[numberOfTags];
-    for (int i=0;i<numberOfTags;i++){
-        filein1.getline(buffer,80);
-        matchfile[i]=new char[strlen(buffer)+1];
-        strcpy(matchfile[i],buffer);
-    }
-    //print the match file to make sure it was read in correctly
-    for(int i=0;i<numberOfTags;i++){
-    	cout<<matchfile[i]<<endl;
-    }
-    //assign tags to the players
-    for(int i=0;i<numberOfTags;i++){
-    	cout<<"Info for tag "<<i+1<<" is----"<<endl;
-    	int indexOfShooter=0;
-    	while(matchfile[i][indexOfShooter]!=' '){
-    		indexOfShooter++;
-    	}
-    	//this holds the shooterID as a char string
-    	cout<<"    numDigits in shooter id is: "<<indexOfShooter<<endl;
-    	char * tempshoot=new char[indexOfShooter+1];
-    	for(int l=0;l<indexOfShooter;l++){
-    		tempshoot[l]=matchfile[i][l];
-    	}
-    	tempshoot[indexOfShooter]='\0';
-        int tempShooterId=atoi(tempshoot);
-        cout<<"    The Shooter id is "<<tempShooterId<<endl;
-
-    	int indexOfTarget=indexOfShooter+1; //shoot=2
-    	while(matchfile[i][indexOfTarget]!=' '){
-    		indexOfTarget++;
-    	}
-    	//this holds the targetID as a char string
-    	cout<<"    numDigits in target id is: "<<indexOfTarget-indexOfShooter-1<<endl;
-    	char * temptarg=new char[indexOfTarget-indexOfShooter];
-    	for(int l=0;l<indexOfTarget-indexOfShooter-1;l++){
-    		temptarg[l]=matchfile[i][l+indexOfTarget-indexOfShooter+1];
-    	}
-    	temptarg[indexOfTarget-indexOfShooter-1]='\0';
-        int tempTargetId=atoi(temptarg);
-        cout<<"    The Target id is "<<tempTargetId<<endl;
-
-        int endOfTimeIndex=4;
-        while(matchfile[i][endOfTimeIndex]!=' '){
-            endOfTimeIndex++;
-        }
-        string tempstr=*(matchfile+i);
-        tempstr=tempstr.substr(4,endOfTimeIndex);
-        int tempGameTime=atoi(tempstr.c_str());
-        int tempTagSpot=matchfile[i][endOfTimeIndex+1]-'0';
-        Tag tempTag=Tag(tempTargetId, tempTagSpot, tempGameTime);
-        if(A.playerOnTeam(tempShooterId)==true){
-            A.getPlayer(tempShooterId).addTag(tempTag);
-        }else if(B.playerOnTeam(tempShooterId)==true){
-            B.getPlayer(tempShooterId).addTag(tempTag);
-        }
-    }*/
+    filein1>>buffer;
+    int numberOfTags=atoi(buffer);
     for(int i=0;i<numberOfTags;i++){
     	char * tempShootID= new char[2];
     	char * tempTargID=new char[2];
@@ -248,11 +199,6 @@ void LaserTagGame::processInputMatchFile(string inputMatchName) {
     	int tempTargetId=atoi(tempTargID);
     	int tempGameTime=atoi(tempGTime);
     	int tempTagSpot=atoi(tempTSpot);
-    	cout<<"For tag # "<<i+1<<endl;
-    	cout<<"    the shooter ID is "<<tempShooterId<<endl;
-    	cout<<"    the target ID is "<<tempTargetId<<endl;
-    	cout<<"    the game time is "<<tempGameTime<<endl;
-    	cout<<"    the tag spot is "<<tempTagSpot<<endl;
     	Tag temp(tempTargetId,tempTagSpot,tempGameTime);
     	if(teamA.playerOnTeam(tempShooterId)==true){
     		teamA.getPlayer(tempShooterId).addTag(temp);
@@ -288,26 +234,6 @@ Team LaserTagGame::processInputTeamFile(string inputFileName) {
     	Player playerToAdd(buffer,tempId);
     	tempTeam.addPlayer(playerToAdd);
     }
-    for(int i=0;i<tempTeam.getNumPlayers();i++){
-    	cout<<"Player "<<i+1<<": "<<tempTeam.getPlayerByIndex(i).getPlayerName()<<endl;
-    }
-    /*for(int i=2;i<numplayersteam1+2;i++){
-        filein.getline(buffer,80);
-        team1[i]=new char[strlen(buffer)+1];
-        strcpy(team1[i],buffer);
-    }
-    filein.close();
-
-    //create team
-    Team tempTeam(team1[0]);
-
-    //create players for team
-    for(int i=0;i<numplayersteam1;i++){
-        int tempPlayerId=team1[2+i][0]-'0';
-        string tempPlayerName=*(team1+2+i)+2;
-        Player temp=Player(tempPlayerName,tempPlayerId);
-        tempTeam.addPlayer(temp);
-    }*/
     filein.close();
     return tempTeam;
 }
@@ -316,4 +242,3 @@ LaserTagGame::~LaserTagGame() {
 	// TODO Auto-generated destructor stub
 }
 
-} /* namespace std */
