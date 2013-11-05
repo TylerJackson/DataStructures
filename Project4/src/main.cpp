@@ -1,18 +1,19 @@
-//
-//  main.cpp
-//  Project4
-//
-//  Created by Tyler JACKSON on 9/5/13.
-//
-//
-
+/*
+ * main.cpp
+ *
+ *  Created on: Nov 4, 2013
+ *      Author: tgjackson
+ */
+#include "flightPath.h"
+#include <cstdlib>
 #include <iostream>
-
-int main(int argc, const char * argv[])
-{
-
-    // insert code here...
-    std::cout << "Hello, World4!\n";
-    return 0;
+int main(int argc, const char * argv[]){
+	flightPath route(argv[1],argv[2],argv[3]);
+	route.processPossibles();
+	return 0;
 }
+
+
+
+
 
