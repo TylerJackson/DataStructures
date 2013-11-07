@@ -1,5 +1,16 @@
-output.txt
+Flight 1: Denver, Los Angeles
+Leg 1: Denver to Los Angeles $30
+Total Cost: $30
 
- Created on: Nov 4, 2013
-     Author: tgjackson
+Flight 2: Houston, Phoenix
+Leg 1: Houston to Phoenix $30
+Total Cost: $30
+
+Flight 3: Kansas City, Denver
+Flight Not Possible
+
+Flight 4: Dallas, Tallahassee
+Leg 1: Dallas to Nashville $280
+Leg 2: Nashville to Tallahassee $220
+Total Cost: $500
 

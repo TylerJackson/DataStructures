@@ -1,8 +1,10 @@
-/*
+/* Tyler Jackon
+ * 11/4/2013
+ *
  * stackTester.cpp
  *
- *  Created on: Nov 4, 2013
- *      Author: tgjackson
+ *	This was a main routine that I created to make sure my stack object was created and functioning
+ *	correctly.
  */
 
 #include <iostream>
@@ -47,8 +49,11 @@ int main(){
 
 
 	tester1.printAdjacencyList();
-
 	tester1.calcFlightPlan("Phoenix","Las Vegas");
+	tester1.calcFlightPlan("Las Vegas","Mexico City");
+	tester1.calcFlightPlan("Denver","Las Vegas");
+	tester1.calcFlightPlan("New York City","Mexico City");
+
 	return 0;
 }
 

@@ -1,7 +1,10 @@
-/*	Tyler Jackson
-	This is my tester class for my linked lists and adjacency lists
-	Oct. 25 2013
-
+/* Tyler Jackon
+ * 11/4/2013
+ *
+ * test_LList.cpp
+ *
+ *	This was a main routine that I created to make sure my linked list object was
+ *	created and functioning correctly.
 */
 
 #include <iostream>

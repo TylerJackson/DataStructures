@@ -1,7 +1,10 @@
-/*	Tyler Jackson
-	This is my tester class for my adjacency lists
-	Oct. 25 2013
-
+/* Tyler Jackon
+ * 11/4/2013
+ *
+ * test_adjacencyList.cpp
+ *
+ *	This was a main routine that I created to make sure my adjacency list object was
+ *	created and functioning correctly.
 */
 
 #include <iostream>

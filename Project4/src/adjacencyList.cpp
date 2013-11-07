@@ -1,13 +1,14 @@
-/*
+/*Tyler Jackson
+ * 11/4/2013
  * adjacencyList.cpp
  *
- *  Created on: Oct 28, 2013
- *      Author: tgjackson
+ *This class implements my adjacency list functions described in adjacencyList.h
  */
 
 #include "adjacencyList.h"
 #include <cstdio>
 #include <iostream>
+#include <fstream>
 using namespace std;
 
 adjacencyList::adjacencyList(){
@@ -44,17 +45,8 @@ adjacencyList& adjacencyList::operator =(const adjacencyList& rhs) {
 		}
 	}
 	this->head=rhs.head;
-//	this->head->next=rhs.next;
-//	this->head->name=rhs.name;
-//	this->head->list=new LList(rhs->list);
 	this->current=rhs.current;
-//	this->current->next=rhs->next;
-//	this->current->name=rhs->name;
-//	this->current->list=new LList(rhs->list);
 	this->tail=rhs.tail;
-//	this->tail->next=rhs->next;
-//	this->tail->name=rhs->name;
-//	this->tail->list=new LList(rhs->list);
 while(current!=0)
 	return *this;
 
@@ -123,31 +115,119 @@ sourceNode*& adjacencyList::getHead(){
 	return this->head;
 }
 void adjacencyList::calcFlightPlan(string sourceCity,string destCity){
-	stack firstStack;
-	string localSource=sourceCity;
-	while(current!=0){
-		if(current->list->getSourceCity() == localSource){
-			 if(current->list->getPlace()!=0){
-				stackNode * nodeToAdd=new stackNode (current->list->getPlace());
-				firstStack.push(nodeToAdd);
-				if(firstStack.top1()->data->name == destCity){
-					for(int i=0;i<firstStack.count();i++){
-						cout<<"Leg "<<i+1<<": "<<firstStack.pop().data->name<<endl;
-					}
-					current=0;
-				}else{
-					localSource= firstStack.top1()->data->name;
-					current=head;
+	bool doesntExist=true;
+	stack fp;
+	stack bd;
+	//cout<<"bals"<<endl;
+	stackNode * pushIt;
+	pushIt = new stackNode(this->getSourceNode(sourceCity),sourceCity,0);
+	//cout<<"ack"<<endl;
+	//return;
+	fp.push(pushIt);
+	//cout<<"I just pushed "<<fp.top->getName()<<endl;
+	bd.push(pushIt);
+	//cout<<"I just pushed this to bad list "<<bd.top->getName()<<endl;
+	while(!fp.isEmpty())
+	{
+		//cout<<fp.top->getName()<<endl;
+		if(fp.top->getName() == destCity) {
+			cout<<"The flight path from "<<sourceCity<<" to "<<destCity<<" is: "<<endl;
+			fp.printStack(fp.top,fp.count());
+			doesntExist=false;
+			break;
+		}
+		if(fp.top->isLeaf()){
+			fp.pop();
 
+		} else {
+			while(bd.has(fp.top->srcNode->list->place)){
+				if(fp.top->srcNode->list->place->next == NULL){
+					fp.pop();
+					if(!fp.isEmpty()){
+						continue;
+					}
+					else{
+						cout<<"The flight path from "<<sourceCity<<" to "<<destCity<<" is: "<<endl;
+						cout<<"    No possible flight plans between these two cities"<<endl;
+						return;
+					}
 				}
-			 }else{
-				 firstStack.pop();
-				 current->list->setPlace(firstStack.top1()->data->next);
-			 }
-		}else{
-			current=current->next;
+				fp.top->srcNode->list->place = fp.top->srcNode->list->place->next;
+			}
+			pushIt=new stackNode  (getSourceNode(fp.top->srcNode->list->place->name),fp.top->srcNode->list->getSourceCity(),fp.top->srcNode->list->place->cost);
+			fp.push(pushIt);
+			bd.push(pushIt);
 		}
 	}
+	if(doesntExist){
+		cout<<"The flight path from "<<sourceCity<<" to "<<destCity<<" is: "<<endl;
+		cout<<"    No possible flight plans between these two cities"<<endl;
+	}
+}
+
+void adjacencyList::calcFlightPlanFile(string sourceCity,string destCity,char * fileName){
+	ofstream fout;
+	fout.open(fileName,ios::app);
+
+	bool doesntExist=true;
+	stack fp;
+	stack bd;
+	stackNode * pushIt;
+	pushIt = new stackNode(this->getSourceNode(sourceCity),sourceCity,0);
+	fp.push(pushIt);
+	bd.push(pushIt);
+	while(!fp.isEmpty())
+	{
+		if(fp.top->getName() == destCity) {
+			fp.printStackFile(fp.top,fp.count(),fileName);
+			doesntExist=false;
+			break;
+		}
+		if(fp.top->isLeaf()){
+			fp.pop();
+
+		} else {
+			while(bd.has(fp.top->srcNode->list->place)){
+				if(fp.top->srcNode->list->place->next == NULL){
+					fp.pop();
+					if(!fp.isEmpty()){
+						continue;
+					}
+					else{
+						fout<<"Flight Not Possible"<<endl;
+						return;
+					}
+				}
+				fp.top->srcNode->list->place = fp.top->srcNode->list->place->next;
+			}
+			pushIt=new stackNode  (getSourceNode(fp.top->srcNode->list->place->name),fp.top->srcNode->list->getSourceCity(),fp.top->srcNode->list->place->cost);
+			fp.push(pushIt);
+			bd.push(pushIt);
+		}
+	}
+	if(doesntExist){
+		fout<<"Flight Not Possible"<<endl;
+	}
+	fout.close();
+}
+
+
+
+sourceNode* adjacencyList::getSourceNode(string sourceName){
+	sourceNode * temp = this->head;
+	while(temp->list->getSourceCity() != sourceName){
+		if(temp==tail){
+			temp=0;
+			break;
+		}
+		temp = temp->next;
+	}
+	if(temp==0){
+		LList tempo(sourceName);
+		temp=new sourceNode(tempo);
+		this->insertNode(temp);
+	}
+	return temp;
 }
 
 

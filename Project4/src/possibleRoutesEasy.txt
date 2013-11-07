@@ -1,0 +1,7 @@
+6
+Houston, Dallas, 80
+Houston, Austin, 120
+Dallas, Houston, 400
+Dallas, Austin, 400
+Austin, Dallas, 10
+Austin, Nashville, 10

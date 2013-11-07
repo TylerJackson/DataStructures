@@ -1,8 +1,9 @@
-/*
- * LList.cpp
+/*	Tyler Jackson
+ * 11/4/2013
  *
- *  Created on: Oct 28, 2013
- *      Author: tgjackson
+ * LList.cpp
+ * 	This class implements all the functions from the LList.h
+ *
  */
 
 #include "LList.h"
@@ -25,6 +26,19 @@ LList::LList(string sourceName){
 	sourceCity=sourceName;
 }
 
+bool LList::isLeaf(cityNode * end){
+	if(end->next == 0)
+		return true;
+	else
+		return false;
+}
+
+bool LList::isEmpty(){
+	if(head == 0)
+		return true;
+	else
+		return false;
+}
 
 LList& LList::operator =(const LList& rhs) {
 	//deletes lhs if it doesn't equal rhs

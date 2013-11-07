@@ -1,13 +1,14 @@
-/*
- * stack.cpp
+/*Tyler Jackson
+ * 11/4/2013
  *
- *  Created on: Nov 4, 2013
- *      Author: tgjackson
+ *  stack.cpp
+ *  This class implements all the functions from my stack.h
  */
 
 #include "stack.h"
+#include <iostream>
 
-
+using namespace std;
 stack::stack() {
 	top=0;
 	counter=0;
@@ -29,14 +30,107 @@ void stack::push(stackNode* nodeToAdd) {
 	}
 }
 
-stackNode& stack::pop() {
+string stack::pop() {
 	counter--;
-	stackNode * temp=new stackNode();
+	stackNode * temp;
 	temp=top;
-	stackNode gonnaReturn(temp->data);
-	top=top->next;
-	delete temp;
-	return gonnaReturn;
+	top->isBad = true;
+	string s=temp->name;
+	top=temp->next;
+
+	return s;
+
+}
+bool stack::has(cityNode * poss){
+	stackNode * iter=top;
+	//cout << "poss name: " << poss->name << endl;
+	while(iter != 0 ){
+		if(iter->data != 0){
+			//cout  << "B:" <<  iter->data->name << "==" << poss->name << endl;
+			if(iter->data->name == poss->name){
+				return true;
+			}
+		}else{
+			//cout << "A:" << iter->srcNode->list->getSourceCity();
+			//cout << "==" << poss->name << endl;
+			if(iter->getName() == poss->name){
+
+				return true;
+			}
+		}
+		iter=iter->next;
+	}
+	return false;
+}
+bool stack::has(sourceNode * poss){
+	stackNode * iter=top;
+	while(iter != 0 ){
+		if(iter->name == poss->list->getSourceCity()){
+			return true;
+		}
+		iter=iter->next;
+	}
+	return false;
+}
+stack stack::getGood(stackNode * top, int count){
+	stack temp;
+	temp.printStack(top,count);
+	return temp;
+
+}
+void stack::printStack(stackNode * top,int count){
+	printStackItems(top,count);
+	double totCost=0;
+	stackNode * iter;
+	iter=this->top;
+	while(iter->next!=0){
+		if(!iter->isBad)
+			totCost+=iter->cost;
+		iter=iter->next;
+	}
+	cout<<"Total Cost: $"<<totCost<<endl;
+}
+void stack::printStackFile(stackNode * top,int count,char * fileName){
+	ofstream fout;
+	fout.open(fileName,ios::app);
+	printStackItemsFile(top,count,fileName);
+	double totCost=0;
+	stackNode * iter;
+	iter=this->top;
+	while(iter->next!=0){
+		if(!iter->isBad)
+			totCost+=iter->cost;
+		iter=iter->next;
+	}
+	fout<<"Total Cost: $"<<totCost<<endl;
+	fout.close();
+}
+void stack::printStackItems(stackNode * top,int count){
+	if(top->next!=0){
+		if(top->next->isBad==true)
+			printStackItems(top->next,count);
+		else
+			printStackItems(top->next,count-1);
+	}
+	if(top->isBad == false && top->startLeg != top->getName()){
+		cout<<"Leg "<<count-1<<": "<<top->startLeg<<" to "<<top->getName()<<" $"<<top->cost<<endl;
+
+	}
+}
+void stack::printStackItemsFile(stackNode * top,int count, char * fileName){
+	ofstream fout;
+	fout.open(fileName,ios::app);
+	if(top->next!=0){
+		if(top->next->isBad==true)
+			printStackItemsFile(top->next,count,fileName);
+		else
+			printStackItemsFile(top->next,count-1,fileName);
+	}
+	if(top->isBad == false && top->startLeg != top->getName()){
+		fout<<"Leg "<<count-1<<": "<<top->startLeg<<" to "<<top->getName()<<" $"<<top->cost<<endl;
+
+	}
+	fout.close();
 }
 
 stackNode* stack::top1(){
@@ -48,10 +142,16 @@ void stack::clear() {
 }
 
 bool stack::isEmpty() {
-	if(top == 0){
+	if(this->counter == 0)
 		return true;
-	}
-	else return false;
+	return false;
+//	if(top == 0){
+//		return true;
+//	}
+//	while(top->isBad == true || top->next == 0){
+//		this->top=this->top->next;
+//	}
+//	return false;
 }
 
 int stack::count() const {

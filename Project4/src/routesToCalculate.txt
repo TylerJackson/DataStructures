@@ -1,5 +1,5 @@
-routesToCalculate.txt
-
- Created on: Nov 4, 2013
-     Author: tgjackson
-
+4
+Denver, Los Angeles
+Houston, Phoenix
+Kansas City, Denver
+Dallas, Tallahassee

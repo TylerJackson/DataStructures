@@ -1,8 +1,8 @@
-/*
- * flightPath.cpp
+/*Tyler Jackson
+ * 11/4/2013
  *
- *  Created on: Nov 4, 2013
- *      Author: tgjackson
+ *  flightPath.cpp
+ *  This class implements all the functions from my flightPath.h
  */
 
 #include "flightPath.h"
@@ -105,18 +105,70 @@ void flightPath::processPossibles(){
 		numPaths++;
 	}
 	mainList->printAdjacencyList();
-	cout<<endl;
-	cout<<"THE TOTAL NUMBER OF PATHS WAS: "<<numPaths<<"."<<endl;
-
-
-}
-
-void flightPath::calcFlightPlan(string sourceCity,string destCity){
+	//cout<<endl;
+	//cout<<"THE TOTAL NUMBER OF PATHS WAS: "<<numPaths<<"."<<endl;
+	fin.close();
 
 }
 
+void flightPath::calcFlightPlans(){
+	ifstream fin;
+	fin.open(routesToCalculateFile);
+	if(fin.is_open()){
+		//cout<<"OPEN"<<endl;
+	}
+	ofstream fout;
+	fout.open(outputFile,ios::app);
+	//get number of routes
+	int numRoutes;
+	fin>>numRoutes;
+	//cout<<numRoutes<<endl;
+
+	//move fin down to first path
+	char * buffer=new char[80];
+	fin.getline(buffer,80);
+	int numPaths=1;
+	while(!fin.eof()){
+		fin.getline(buffer,80);
+		//cout<<buffer<<" = buffer"<<endl;
+		//get first comma index
+		int commaIndex=0;
+		while(buffer[commaIndex]!=','){
+			commaIndex++;
+		}
+		string sourcestring=buffer;
+		string deststring=buffer;
+		sourcestring=sourcestring.substr(0,commaIndex);
+		//store source city into sourceTemp1 as a string
+		deststring=deststring.substr(commaIndex+2,2);
+		//cout<<deststring<<"DEST"<<endl;
+		//get end of nextWord index
+		int key=strlen(buffer)-1;
+		while(buffer[key] == ' '){
+			//cout<<"buffer of "<<key<<" is "<<buffer[key]<<endl;
+			key--;
+
+		}
+
+		commaIndex=commaIndex+2;
+		//store destination city into the destTemp1
+		char * destTemp=new char [key-commaIndex+1];
+		for(int i=commaIndex;i<key+1;i++){
+			destTemp[i-commaIndex]=buffer[i];
+		}
+		//cout<<destTemp<<endl;
+		string destTemp1=destTemp;
+		fout<<"Flight "<<numPaths<<": "<<sourcestring<<", "<<destTemp1<<endl;
+		mainList->calcFlightPlanFile(sourcestring,destTemp1,outputFile);
+		fout<<endl;
+		numPaths++;
+	}
+	fout.close();
+	fin.close();
+}
 
 flightPath::~flightPath() {
 	// TODO Auto-generated destructor stub
 }
+
 

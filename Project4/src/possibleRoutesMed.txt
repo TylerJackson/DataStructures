@@ -1,0 +1,23 @@
+22
+San Diego, Los Angeles, 50
+San Francisco, San Diego, 30
+San Francisco, Los Angeles, 130
+Los Angeles, San Francisco, 40
+Los Angeles, Salt Lake City, 200
+Phoenix, San Francisco, 130
+Salt Lake City, Houston, 300
+Salt Lake City, Denver, 800
+Denver, Los Angeles, 30
+Denver, Salt Lake City, 10
+Denver, Tallahassee, 130
+Houston, San Francisco, 60
+Houston, Dallas, 80
+Kansas City, Denver, 350
+Dallas, Houston, 400
+Dallas, New Orleans, 210
+Dallas, Nashville, 280
+Austin, Nashville, 10
+St. Louis, Tallahassee, 60
+New Orleans, Dallas, 80
+Nashville, Tallahassee, 220
+Tallahassee, Austin, 170
