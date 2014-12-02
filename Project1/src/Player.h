@@ -22,6 +22,7 @@ public:
     void updatePlayerScore();
     string getPlayerName();
     Tag & getTag(int index);
+    virtual ~ Player();
 private:
     string playerName;
     int playerId;

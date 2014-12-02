@@ -18,12 +18,9 @@ using namespace std;
 LaserTagGame::LaserTagGame(string teamAF,string teamBF, string teamMatchF){
 	Team tempTeamA=processInputTeamFile(teamAF);
     Team tempTeamB=processInputTeamFile(teamBF);
-    if(tempTeamA.getTeamName()<tempTeamB.getTeamName()){
-        teamA=processInputTeamFile(teamAF);
-        teamB=processInputTeamFile(teamBF);
-    }else{
-        teamB=processInputTeamFile(teamAF);
+    if(tempTeamA.getTeamName()>tempTeamB.getTeamName()){
         teamA=processInputTeamFile(teamBF);
+        teamB=processInputTeamFile(teamAF);
     }
     processInputMatchFile(teamMatchF, teamA, teamB);
 }
